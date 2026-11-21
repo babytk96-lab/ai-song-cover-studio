@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d20">
+<title>AI SONG COVER STUDIO</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#100d20;color:white;font-family:Arial,sans-serif;padding:22px 16px}
+header{text-align:center;padding:24px 0}
+.logo{font-size:43px}
+h1{font-size:25px;margin:10px 0;color:#c4a7ff}
+header p{color:#aaa;font-size:13px}
+.card{background:#1d1930;border:1px solid #38304f;border-radius:18px;padding:19px;margin-bottom:17px}
+h3{font-size:16px;margin:0 0 15px}
+label{display:block;color:#c9c1dc;font-size:13px;margin:13px 0 7px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #49415e;border-radius:10px;background:#100d20;color:white;font-size:15px}
+input[type=file]{font-size:12px}
+button{border:0;border-radius:12px;padding:15px;background:linear-gradient(100deg,#8054ed,#b04ce1);color:white;font-weight:bold;font-size:15px;width:100%;cursor:pointer}
+button:disabled{opacity:.5}
+.upload{border:2px dashed #7655b9;text-align:center;padding:25px;border-radius:14px;background:#171329}
+.upload span{font-size:35px}
+.small{font-size:12px;color:#aaa;line-height:1.6}
+#status{margin-top:15px;color:#d1b9ff;font-size:13px;line-height:1.6}
+audio{width:100%;margin-top:12px}
+footer{text-align:center;color:#777;font-size:11px;padding:22px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">🎵</div>
+<h1>AI SONG COVER STUDIO</h1>
+<p>Your Music. Your Voice. Your Style.</p>
+</header>
+
+<div class="card">
+<h3>🎧 1. Upload Your Song</h3>
+<div class="upload">
+<span>☁️</span>
+<p>ជ្រើសរើសបទចម្រៀងរបស់អ្នក</p>
+<input type="file" id="song" accept="audio/*">
+</div>
+<p class="small">គាំទ្រឯកសារសំឡេងដែល iPhone អាចអានបាន។</p>
+<audio id="player" controls hidden></audio>
+</div>
+
+<div class="card">
+<h3>🎤 2. Choose AI Voice</h3>
+<label>ប្រភេទសំឡេង</label>
+<select id="voice">
+<option value="Female">👩 Female Voice</option>
+<option value="Male">👨 Male Voice</option>
+</select>
+<label>ភាសាចម្រៀង</label>
+<select id="language">
+<option>Khmer</option>
+<option>Chinese</option>
+<option>English</option>
+</select>
+</div>
+
+<div class="card">
+<h3>🎼 3. Choose Music Style</h3>
+<select id="style">
+<option>Pop</option>
+<option>Ballad</option>
+<option>Rock</option>
+<option>R&B</option>
+<option>Rap</option>
+<option>Acoustic</option>
+<option>Traditional</option>
+</select>
+<label>ចំណាំបន្ថែម (Optional)</label>
+<textarea id="notes" rows="3" placeholder="សរសេរអ្វីដែលអ្នកចង់បាន..."></textarea>
+</div>
+
+<div class="card">
+<h3>✨ 4. Create Your AI Cover</h3>
+<button id="create">🎵 CREATE AI COVER</button>
+<div id="status">សូមបញ្ចូលបទចម្រៀង ដើម្បីចាប់ផ្ដើម។</div>
+</div>
+
+<div class="card">
+<h3>📥 5. Your Music</h3>
+<p class="small">បទចម្រៀងដែលបានបង្កើតនឹងបង្ហាញនៅទីនេះ នៅពេលភ្ជាប់ AI Music Engine រួចរាល់។</p>
+</div>
+
+<footer>AI SONG COVER STUDIO © 2026<br>Made for Music Lovers ❤️</footer>
+
+<script>
+const song=document.getElementById('song');
+const player=document.getElementById('player');
+const status=document.getElementById('status');
+
+song.addEventListener('change',()=>{
+ if(song.files.length){
+  const file=song.files[0];
+  player.src=URL.createObjectURL(file);
+  player.hidden=false;
+  status.textContent="បានជ្រើសរើស៖ "+file.name;
+ }
+});
+
+document.getElementById('create').addEventListener('click',()=>{
+ if(!song.files.length){
+  status.textContent="⚠️ សូម Upload បទចម្រៀងជាមុនសិន។";
+  return;
+ }
+ status.textContent="✅ ការកំណត់របស់អ្នករួចរាល់! AI Music Engine មិនទាន់បានភ្ជាប់ទេ។ យើងនឹងបន្ថែមវានៅជំហានបន្ទាប់។";
+});
+</script>
+</body>
+</html>
